@@ -11,15 +11,15 @@
 
 class EPS
 {
-  private:
+  public:
+	void begin(int rx, int tx, bool inversion, int baud);
     bool radio(void);
     bool heartbeat(void);
     bool sleep(void);
 
-  public:
-	void begin(int rx, int tx, bool inversion, int baud);
+  private:
     bool eps_sleep_send(void);
     bool eps_heartbeat_send(void);
     bool eps_radio_send(void);
-}
+};
 #endif 
