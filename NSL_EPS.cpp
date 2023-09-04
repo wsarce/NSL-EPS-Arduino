@@ -8,12 +8,13 @@ byte heartbeat_payload[] = {0x50, 0x50, 0x50, 0x0B, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
 byte sleep_payload[] = {0x50, 0x50, 0x50, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 byte radio_payload[] = {0x50, 0x50, 0x50, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-SoftwareSerial eps_serial = SoftwareSerial(EPS_RX, EPS_TX, false);
+EPS::EPS(uint8_t rx_pin, uint8_t tx_pin) : eps_serial(rx_pin, tx_pin) {}
 
-void EPS::begin(int rx = EPS_RX, int tx = EPS_TX, bool inversion = false, int baud = 38400)
+EPS::~EPS(){}
+
+void EPS::begin(void) 
 {
-	eps_serial = SoftwareSerial(rx, tx, inversion);
-	eps_serial.begin(baud);
+	eps_serial.begin(38400);
 }
 
 bool EPS::radio(void)
@@ -31,7 +32,7 @@ bool EPS::eps_radio_send(void)
   eps_serial.write(radio_payload, EPS_BYTES);
   byte ack[EPS_BYTES];
   memset(ack, 0, EPS_BYTES);
-  while (digitalRead(BUSY) == HIGH);
+  while (digitalRead(BUSY) == EPS_BUSY);
   eps_serial.readBytes(ack, EPS_BYTES);
   if (memcmp(empty_payload, ack, EPS_BYTES) != 0) return true;
   else return false;
@@ -52,7 +53,7 @@ bool EPS::eps_sleep_send(void)
   eps_serial.write(sleep_payload, EPS_BYTES);
   byte ack[EPS_BYTES];
   memset(ack, 0, EPS_BYTES);
-  while (digitalRead(BUSY) == HIGH);
+  while (digitalRead(BUSY) == EPS_BUSY);
   eps_serial.readBytes(ack, EPS_BYTES);
   if (memcmp(empty_payload, ack, EPS_BYTES) != 0) return true;
   else return false;
@@ -73,7 +74,7 @@ bool EPS::eps_heartbeat_send(void)
   eps_serial.write(heartbeat_payload, EPS_BYTES);
   byte ack[EPS_BYTES];
   memset(ack, 0, EPS_BYTES);
-  while (digitalRead(BUSY) == HIGH);
+  while (digitalRead(BUSY) == EPS_BUSY);
   eps_serial.readBytes(ack, EPS_BYTES);
   if (memcmp(empty_payload, ack, EPS_BYTES) != 0) return true;
   else return false;

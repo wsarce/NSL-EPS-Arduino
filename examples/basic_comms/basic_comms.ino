@@ -1,12 +1,16 @@
 #include "NSL_EPS.h"
 
-EPS eps;
+EPS eps(EPS_RX, EPS_TX);
 
 void setup() {
   Serial.begin(9600);
-  while (digitalRead(BUSY) == HIGH);
-  eps.begin(EPS_RX, EPS_TX, false, 38400);
   pinMode(BUSY, INPUT);
+  while (digitalRead(BUSY) == HIGH)
+  {
+    Serial.println("Waiting to start");
+    delay(1000);
+  }
+  eps.begin();
 }
 
 void loop() {

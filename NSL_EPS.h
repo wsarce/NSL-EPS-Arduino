@@ -2,6 +2,7 @@
 #define EPS_RADIO_H
 
 #include "Energia.h"
+#include <SoftwareSerial.h>
 
 #define EPS_BYTES 21
 #define EPS_BUSY HIGH
@@ -12,12 +13,15 @@
 class EPS
 {
   public:
-	void begin(int rx, int tx, bool inversion, int baud);
+	EPS(uint8_t rx_pin, uint8_t tx_pin);
+	~EPS();
+	void begin(void);
     bool radio(void);
     bool heartbeat(void);
     bool sleep(void);
 
   private:
+	SoftwareSerial eps_serial;
     bool eps_sleep_send(void);
     bool eps_heartbeat_send(void);
     bool eps_radio_send(void);
