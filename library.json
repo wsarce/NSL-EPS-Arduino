@@ -1,0 +1,21 @@
+{
+    "name": "NSL_EPS_Arduino",
+    "description": "Access and control Near Space Launch's satellite Electrical Power System and radio.",
+    "keywords": "NSL, EPS, cubesat, BRS, AXP",
+    "authors": [
+        {
+            "name": "Walker Arce",
+            "email": "wsarcera@gmail.com",
+            "url": "",
+            "maintainer": true
+        },
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wsarce/NSL-EPS-Arduino"
+    },
+    "version": "1.0.0",
+    "homepage": "https://github.com/wsarce/NSL-EPS-Arduino",
+    "frameworks": "Arduino",
+    "examples": []
+}

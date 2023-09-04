@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map For NSL_EPS_Arduino
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+EPS	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+radio	KEYWORD2
+heartbeat	KEYWORD2
+sleep	KEYWORD2
+eps_sleep_send	KEYWORD2
+eps_heartbeat_send	KEYWORD2
+eps_radio_send	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+EPS_BYTES	LITERAL1
+EPS_BUSY	LITERAL1
+EPS_READY	LITERAL1
+EPS_TRIES	LITERAL1
