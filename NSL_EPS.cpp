@@ -1,6 +1,15 @@
-#include "eps_radio.h"
+#include "NSL_EPS.h"
 #include "Energia.h"
 #include <SoftwareSerial.h>
+#include <stdio.h>
+
+SoftwareSerial eps_serial;
+
+void EPS::begin(int rx = EPS_RX, int tx = EPS_TX, bool inversion = false, int baud = 38400)
+{
+	eps_serial = SoftwareSerial(rx, tx, inversion);
+	eps_serial.begin(baud);
+}
 
 bool EPS::radio(void)
 {
