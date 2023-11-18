@@ -16,14 +16,14 @@ class EPS
 	EPS(uint8_t rx_pin, uint8_t tx_pin);
 	~EPS();
 	void begin(void);
-    bool radio(void);
-    bool heartbeat(void);
+    bool radio(byte *packet);
+    bool heartbeat(byte *packet);
     bool sleep(void);
 
   private:
 	SoftwareSerial eps_serial;
     bool eps_sleep_send(void);
-    bool eps_heartbeat_send(void);
-    bool eps_radio_send(void);
+    bool eps_heartbeat_send(byte *packet);
+    bool eps_radio_send(byte *packet);
 };
 #endif 
